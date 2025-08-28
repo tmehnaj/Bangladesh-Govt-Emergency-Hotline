@@ -17,8 +17,8 @@ document.getElementById('card-box').addEventListener('click', function (event) {
 
 //call button
 document.getElementById('card-box').addEventListener('click', function (event) {
-    if (event.target.className.includes('call-btn')) {
-        const callButton = event.target;
+    if (event.target.closest('.call-btn')) {
+        const callButton = event.target.closest('.call-btn');
         //alert
         const serviceNameBangla = callButton.parentNode.parentNode.children[1].innerText;
         const serviceName = callButton.parentNode.parentNode.children[2].innerText;
@@ -34,6 +34,11 @@ document.getElementById('card-box').addEventListener('click', function (event) {
             alert(`📞Calling ${serviceName} ${serviceNumber}`);
             presentCoin = presentCoin - 20;
             document.getElementById('coin-count').innerText = presentCoin;
+
+            //current time
+        //     const currentTime = new Date();
+        //    console.log( currentTime.toLocaleTimeString());
+
 
             const newHistory = document.createElement('div');
             newHistory.innerHTML = `
@@ -55,4 +60,24 @@ document.getElementById('card-box').addEventListener('click', function (event) {
 //clear button
 document.getElementById('clear-btn').addEventListener('click', function(){
     document.getElementById('history-stack').innerHTML = '';
+})
+
+//copy button
+
+document.getElementById('card-box').addEventListener('click', function(event){
+    if(event.target.closest('.copy-btn')){
+        const copyButton = event.target.closest('.copy-btn');
+        const serviceNumber = copyButton.parentNode.parentNode.children[3].innerText;
+        let copyCount = toNumber('copy-count');
+
+        //clipboard e text copy kora
+        navigator.clipboard.writeText(serviceNumber);
+
+        alert(`নম্বর কপি হয়েছে: ${serviceNumber}`);
+
+        copyCount = copyCount + 1;
+        document.getElementById('copy-count').innerText = copyCount;
+
+
+    }
 })
