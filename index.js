@@ -36,9 +36,14 @@ document.getElementById('card-box').addEventListener('click', function (event) {
             document.getElementById('coin-count').innerText = presentCoin;
 
             //current time
-        //     const currentTime = new Date();
-        //    console.log( currentTime.toLocaleTimeString());
-
+            const currentTime = new Date();
+            const changeTime = {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true
+            };
+            const format12HourTime = currentTime.toLocaleTimeString('en-Us', changeTime);
 
             const newHistory = document.createElement('div');
             newHistory.innerHTML = `
@@ -47,7 +52,7 @@ document.getElementById('card-box').addEventListener('click', function (event) {
                              <h3 class="text-base text-[#111111]">${serviceNameBangla}</h3>
                         <p class="text-base text-gray-600 inline-block">${serviceNumber}</p>
                         </div>
-                        <p class="text-base text-[#111111]">11:36:58 <span>AM</span></p>
+                        <p class="text-base text-[#111111]">${format12HourTime}</p>
                     </div>
             `
 
